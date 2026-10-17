@@ -9,7 +9,7 @@ from typing import Optional, Dict, Any, List
 from app.services.auth import get_current_user_id
 from app.db.repository import db
 
-router = APIRouter(prefix="/preferences")
+router = APIRouter()
 
 
 class AnsweringRulesResponse(BaseModel):

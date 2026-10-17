@@ -1,3 +1,7 @@
+/**
+ * Walter AI — Frontend API Client
+ */
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
 
 interface FetchOptions extends RequestInit {
@@ -29,26 +33,26 @@ async function apiFetch<T>(endpoint: string, options: FetchOptions = {}): Promis
   return res.json();
 }
 
-// Health
-export const checkHealth = () => apiFetch<any>('/health');
+// Health Check
+export const checkHealth = () => apiFetch<{ status: string; service: string; integrations: Record<string, string> }>('/health');
 
 // Profile
 export const getProfile = (token?: string) =>
-  apiFetch<any>('/api/profile/profile', { token });
+  apiFetch<any>('/api/profile', { token });
 
 export const updateProfile = (data: any, token?: string) =>
-  apiFetch<any>('/api/profile/profile', {
+  apiFetch<any>('/api/profile', {
     method: 'PUT',
     body: JSON.stringify(data),
     token,
   });
 
-// Preferences
+// Preferences / Answering Rules
 export const getPreferences = (token?: string) =>
-  apiFetch<any>('/api/preferences/preferences', { token });
+  apiFetch<any>('/api/preferences', { token });
 
 export const updatePreferences = (data: any, token?: string) =>
-  apiFetch<any>('/api/preferences/preferences', {
+  apiFetch<any>('/api/preferences', {
     method: 'PUT',
     body: JSON.stringify(data),
     token,
@@ -57,47 +61,59 @@ export const updatePreferences = (data: any, token?: string) =>
 // Calls
 export const getCalls = (params: Record<string, string> = {}, token?: string) => {
   const query = new URLSearchParams(params).toString();
-  return apiFetch<any>(`/api/calls/calls${query ? `?${query}` : ''}`, { token });
+  return apiFetch<any>(`/api/calls${query ? `?${query}` : ''}`, { token });
 };
 
 export const getCall = (callId: string, token?: string) =>
-  apiFetch<any>(`/api/calls/calls/${callId}`, { token });
+  apiFetch<any>(`/api/calls/${callId}`, { token });
 
 export const getCallSummary = (callId: string, token?: string) =>
-  apiFetch<any>(`/api/calls/calls/${callId}/summary`, { token });
+  apiFetch<any>(`/api/calls/${callId}/summary`, { token });
 
 export const escalateCall = (callId: string, reason?: string, token?: string) =>
-  apiFetch<any>(`/api/calls/calls/${callId}/escalate`, {
+  apiFetch<any>(`/api/calls/${callId}/escalate`, {
     method: 'POST',
     body: JSON.stringify({ reason }),
     token,
   });
 
-// Dashboard
+// Dashboard Stats
 export const getDashboardStats = (token?: string) =>
-  apiFetch<any>('/api/dashboard/dashboard/stats', { token });
+  apiFetch<any>('/api/dashboard/stats', { token });
 
-// Simulator
+// Browser Simulator
 export const createSimulatorSession = (callerName?: string, token?: string) =>
-  apiFetch<any>('/api/simulator/simulator/sessions', {
+  apiFetch<{ session_id: string; status: string; greeting: string }>('/api/simulator/sessions', {
     method: 'POST',
     body: JSON.stringify({ caller_name: callerName }),
     token,
   });
 
 export const sendSimulatorMessage = (sessionId: string, message: string, token?: string) =>
-  apiFetch<any>(`/api/simulator/simulator/sessions/${sessionId}/messages`, {
-    method: 'POST',
-    body: JSON.stringify({ message }),
-    token,
-  });
+  apiFetch<{ response: string; intent: string | null; urgency: string | null }>(
+    `/api/simulator/sessions/${sessionId}/messages`,
+    {
+      method: 'POST',
+      body: JSON.stringify({ message }),
+      token,
+    }
+  );
 
 export const endSimulatorSession = (sessionId: string, token?: string) =>
-  apiFetch<any>(`/api/simulator/simulator/sessions/${sessionId}/end`, {
+  apiFetch<{
+    session_id: string;
+    summary: string;
+    category: string;
+    urgency: string;
+    key_details: Record<string, unknown>;
+    follow_up_actions: Array<{ action: string; priority: 'high' | 'medium' | 'low' }>;
+    duration_seconds: number;
+    call_id: string | null;
+  }>(`/api/simulator/sessions/${sessionId}/end`, {
     method: 'POST',
     token,
   });
 
-// Integrations
+// Integrations Status
 export const getIntegrationStatus = (token?: string) =>
-  apiFetch<any>('/api/integrations/integrations/status', { token });
+  apiFetch<any>('/api/integrations/status', { token });

@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends
 from app.services.auth import get_current_user_id
 from app.db.repository import db
 
-router = APIRouter(prefix="/dashboard")
+router = APIRouter()
 
 
 @router.get("/dashboard/stats")

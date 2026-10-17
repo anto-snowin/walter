@@ -10,7 +10,7 @@ from datetime import datetime
 from app.services.auth import get_current_user_id
 from app.db.repository import db
 
-router = APIRouter(prefix="/calls")
+router = APIRouter()
 
 
 class CallSummaryResponse(BaseModel):

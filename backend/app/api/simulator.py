@@ -10,7 +10,7 @@ from app.services.auth import get_current_user_id
 from app.services.simulator import SimulatorService
 from app.db.repository import db
 
-router = APIRouter(prefix="/simulator")
+router = APIRouter()
 
 simulator_service = SimulatorService()
 
