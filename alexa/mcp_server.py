@@ -27,6 +27,13 @@ app = FastAPI(
 )
 
 
+@app.get("/health")
+async def health_check():
+    """Health check for Alexa MCP server."""
+    return {"status": "healthy", "service": "walter-alexa-mcp"}
+
+
+
 def verify_alexa_auth(authorization: Optional[str] = Header(default=None)):
     """Enforce authorization header for Alexa integration requests."""
     if ALEXA_MCP_API_KEY and authorization != f"Bearer {ALEXA_MCP_API_KEY}":

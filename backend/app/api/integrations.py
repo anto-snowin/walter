@@ -7,15 +7,23 @@ from fastapi import APIRouter, Depends
 from app.config import settings
 from app.services.auth import get_current_user_id
 
+from app.services.twilio_service import TwilioService
+
 router = APIRouter()
+twilio_service = TwilioService()
 
 
 @router.get("/integrations/status")
 async def get_integration_status(user_id: str = Depends(get_current_user_id)):
     """Get honest connection status of all integrations."""
+    twilio_health = None
+    if settings.has_twilio:
+        twilio_health = await twilio_service.check_health()
+
     return {
         "twilio": {
             "status": "configured" if settings.has_twilio else "not_configured",
+            "health": twilio_health,
             "description": "Twilio Programmable Voice for inbound telephone calls",
             "requires": ["TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN", "TWILIO_PHONE_NUMBER"],
             "configured_fields": {

@@ -34,11 +34,15 @@ async def incoming_call(request: Request):
             logger.warning("Invalid Twilio webhook signature")
             raise HTTPException(status_code=403, detail="Invalid signature")
 
-    logger.info(f"Incoming call from: {form_data.get('From', 'unknown')}")
+    caller = str(form_data.get("From", "Unknown Caller"))
+    call_sid = str(form_data.get("CallSid", ""))
+    logger.info(f"Incoming call from: {caller} (CallSid: {call_sid})")
 
-    # Generate TwiML to connect bidirectional media stream
+    # Generate TwiML to connect bidirectional media stream with custom parameters
     twiml = twilio_service.generate_connect_twiml(
-        stream_url=f"wss://{request.headers.get('host', 'localhost')}/api/voice/stream"
+        stream_url=f"wss://{request.headers.get('host', 'localhost')}/api/voice/stream",
+        caller=caller,
+        call_sid=call_sid,
     )
 
     return Response(content=twiml, media_type="application/xml")

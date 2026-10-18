@@ -30,14 +30,18 @@ class TwilioService:
         validator = RequestValidator(settings.twilio_auth_token)
         return validator.validate(url, params, signature)
 
-    def generate_connect_twiml(self, stream_url: str) -> str:
+    def generate_connect_twiml(self, stream_url: str, caller: str = "", call_sid: str = "") -> str:
         """Generate TwiML to connect a bidirectional media stream."""
+        caller_param = f'<Parameter name="caller" value="{caller}" />' if caller else ""
+        call_sid_param = f'<Parameter name="call_sid" value="{call_sid}" />' if call_sid else ""
         return f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Say voice="alice">Please wait while I connect you to Walter.</Say>
     <Connect>
         <Stream url="{stream_url}">
             <Parameter name="service" value="walter-ai" />
+            {caller_param}
+            {call_sid_param}
         </Stream>
     </Connect>
 </Response>"""
