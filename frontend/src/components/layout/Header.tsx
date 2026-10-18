@@ -8,9 +8,11 @@ import {
   X,
   PhoneCall,
   Terminal,
-  LogOut,
   User,
-  ShieldAlert,
+  ShieldCheck,
+  ChevronRight,
+  Headphones,
+  Sparkles,
 } from 'lucide-react';
 import { BrutalButton } from '../ui/BrutalButton';
 
@@ -18,104 +20,98 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // Extract friendly breadcrumb name
+  const pageName = pathname.replace('/dashboard', '').replace('/', '') || 'Overview';
+  const formattedPageName = pageName
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
   return (
-    <header className="bg-[#F5F0E8] border-b-[3px] border-[#171717] px-6 py-4 flex items-center justify-between sticky top-0 z-30 shadow-[0_2px_0px_#171717]">
+    <header className="bg-[#07090E]/70 backdrop-blur-xl border-b border-white/[0.08] px-6 py-3.5 flex items-center justify-between sticky top-0 z-30 transition-all">
       {/* Mobile Branding & Hamburger */}
       <div className="flex items-center gap-3 md:hidden">
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-1.5 border-[2px] border-[#171717] bg-white shadow-[2px_2px_0px_#171717]"
+          className="p-2 rounded-lg border border-white/10 bg-slate-900/60 text-slate-200 hover:text-white hover:bg-slate-800 transition-colors"
+          aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
-        <Link href="/dashboard" className="font-display font-black text-lg tracking-tight">
-          WALTER<span className="text-[#FF6B4A]">.AI</span>
+        <Link href="/dashboard" className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-500 to-cyan-400 p-[1px]">
+            <div className="w-full h-full bg-[#0B0F1C] rounded-[7px] flex items-center justify-center">
+              <Headphones className="w-3.5 h-3.5 text-indigo-400" />
+            </div>
+          </div>
+          <span className="font-display font-bold text-base tracking-tight text-white">
+            WALTER<span className="text-cyan-400">.AI</span>
+          </span>
         </Link>
       </div>
 
-      {/* Desktop Breadcrumb/Current Page */}
-      <div className="hidden md:flex items-center gap-3">
-        <span className="text-xs font-mono font-bold uppercase text-[#8a8a7a]">
-          WALTER CALL CONSOLE /
-        </span>
-        <span className="font-display font-bold text-base text-[#171717] uppercase tracking-wide">
-          {pathname.replace('/dashboard', '').replace('/', '') || 'OVERVIEW'}
-        </span>
+      {/* Desktop Breadcrumbs */}
+      <div className="hidden md:flex items-center gap-2 text-sm">
+        <Link
+          href="/dashboard"
+          className="text-slate-400 hover:text-slate-200 font-medium transition-colors"
+        >
+          Console
+        </Link>
+        <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
+        <span className="font-semibold text-slate-100">{formattedPageName}</span>
       </div>
 
       {/* Right Controls */}
-      <div className="flex items-center gap-4">
-        {/* Simulator Quick Action */}
+      <div className="flex items-center gap-3 sm:gap-4">
+        {/* Live System Indicator */}
+        <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-400 font-mono">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span>All Services Operational</span>
+        </div>
+
+        {/* Quick Simulator CTA */}
         <Link href="/dashboard/simulator">
-          <BrutalButton variant="primary" size="sm">
-            <Terminal className="w-4 h-4" />
-            <span className="hidden sm:inline">Simulate Call</span>
+          <BrutalButton variant="primary" size="sm" className="gap-2">
+            <Terminal className="w-3.5 h-3.5" />
+            <span>Simulate Call</span>
           </BrutalButton>
         </Link>
 
-        {/* User Account / Mode Indicator */}
-        <div className="flex items-center gap-2 border-[2px] border-[#171717] bg-white px-3 py-1.5 shadow-[2px_2px_0px_#171717]">
-          <div className="w-6 h-6 rounded-full bg-[#171717] text-[#C8FF00] flex items-center justify-center text-xs font-bold font-mono">
+        {/* User Account / Mode Capsule */}
+        <div className="flex items-center gap-2.5 rounded-xl border border-white/[0.08] bg-slate-900/60 backdrop-blur-md px-3 py-1.5 text-xs text-slate-300">
+          <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-indigo-500 to-violet-500 flex items-center justify-center text-xs font-bold text-white shadow-sm">
             U
           </div>
-          <span className="text-xs font-mono font-bold text-[#171717] hidden sm:inline">
-            OWNER (ACTIVE)
-          </span>
+          <div className="hidden sm:block text-left">
+            <div className="font-semibold text-slate-200 leading-tight text-xs">
+              Owner Console
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-[#202020] text-[#F5F0E8] border-b-[3px] border-[#171717] p-5 space-y-3 md:hidden shadow-[0_6px_0px_#171717]">
-          <Link
-            href="/dashboard"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block font-bold text-sm hover:text-[#C8FF00]"
-          >
-            Overview
-          </Link>
-          <Link
-            href="/dashboard/calls"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block font-bold text-sm hover:text-[#C8FF00]"
-          >
-            Call History
-          </Link>
-          <Link
-            href="/dashboard/simulator"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block font-bold text-sm hover:text-[#C8FF00]"
-          >
-            Call Simulator
-          </Link>
-          <Link
-            href="/dashboard/personalization"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block font-bold text-sm hover:text-[#C8FF00]"
-          >
-            Personalization
-          </Link>
-          <Link
-            href="/dashboard/rules"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block font-bold text-sm hover:text-[#C8FF00]"
-          >
-            Call Rules
-          </Link>
-          <Link
-            href="/dashboard/integrations"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block font-bold text-sm hover:text-[#C8FF00]"
-          >
-            Integrations
-          </Link>
-          <Link
-            href="/dashboard/settings"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block font-bold text-sm hover:text-[#C8FF00]"
-          >
-            Settings
-          </Link>
+        <div className="absolute top-full left-0 right-0 bg-[#0A0D18]/95 backdrop-blur-2xl border-b border-white/[0.08] p-5 space-y-2 md:hidden shadow-2xl animate-fade-in">
+          {[
+            { label: 'Overview', href: '/dashboard' },
+            { label: 'Call History', href: '/dashboard/calls' },
+            { label: 'Call Simulator', href: '/dashboard/simulator' },
+            { label: 'Personalization', href: '/dashboard/personalization' },
+            { label: 'Call Rules', href: '/dashboard/rules' },
+            { label: 'Integrations', href: '/dashboard/integrations' },
+            { label: 'Settings', href: '/dashboard/settings' },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/[0.06] transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
       )}
     </header>
