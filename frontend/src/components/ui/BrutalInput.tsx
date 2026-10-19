@@ -16,8 +16,7 @@ export const BrutalInput = forwardRef<HTMLInputElement, BrutalInputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="section-header"
-            style={{ marginBottom: 0 }}
+            className="font-mono text-xs font-bold uppercase tracking-wider text-[#171717]"
           >
             {label}
           </label>
@@ -25,12 +24,12 @@ export const BrutalInput = forwardRef<HTMLInputElement, BrutalInputProps>(
         <input
           ref={ref}
           id={inputId}
-          className={`brutal-input ${error ? 'border-[var(--walter-coral)]' : ''} ${className}`}
+          className={`brutal-input ${error ? '!border-[#FF6B4A]' : ''} ${className}`}
           {...props}
         />
         {error && (
-          <span className="text-xs font-medium" style={{ color: 'var(--walter-coral)' }}>
-            {error}
+          <span className="text-xs font-mono font-bold text-[#FF6B4A]">
+            [{error}]
           </span>
         )}
       </div>

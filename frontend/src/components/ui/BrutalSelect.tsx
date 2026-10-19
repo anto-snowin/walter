@@ -15,21 +15,24 @@ export const BrutalSelect = forwardRef<HTMLSelectElement, BrutalSelectProps>(
     return (
       <div className="flex flex-col gap-1.5 w-full">
         {label && (
-          <label htmlFor={selectId} className="section-header text-xs" style={{ marginBottom: 0 }}>
+          <label
+            htmlFor={selectId}
+            className="font-mono text-xs font-bold uppercase tracking-wider text-[#171717]"
+          >
             {label}
           </label>
         )}
         <select
           ref={ref}
           id={selectId}
-          className={`brutal-select ${error ? 'border-[var(--walter-coral)]' : ''} ${className}`}
+          className={`brutal-select ${error ? '!border-[#FF6B4A]' : ''} ${className}`}
           {...props}
         >
           {children}
         </select>
         {error && (
-          <span className="text-xs font-semibold" style={{ color: 'var(--walter-coral)' }}>
-            {error}
+          <span className="text-xs font-mono font-bold text-[#FF6B4A]">
+            [{error}]
           </span>
         )}
       </div>

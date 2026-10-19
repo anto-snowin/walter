@@ -13,29 +13,27 @@ export function BrutalCard({
   className = '',
   ...props
 }: BrutalCardProps) {
-  let variantClass = 'bg-[#0E1322]/70 border border-white/[0.08] shadow-xl';
+  let variantClass = 'bg-white text-[#171717] border-[3px] border-[#171717] shadow-[5px_5px_0px_#171717]';
 
   if (variant === 'dark') {
-    variantClass = 'bg-[#0A0D18]/90 border border-white/[0.06] shadow-2xl';
+    variantClass = 'bg-[#171717] text-[#F5F0E8] border-[3px] border-[#171717] shadow-[5px_5px_0px_#171717]';
   } else if (variant === 'lime') {
-    variantClass = 'bg-gradient-to-br from-emerald-500/10 via-[#0E1322]/80 to-transparent border border-emerald-500/20 shadow-emerald-500/5 shadow-xl';
+    variantClass = 'bg-[#C8FF00] text-[#171717] border-[3px] border-[#171717] shadow-[5px_5px_0px_#171717]';
   } else if (variant === 'coral') {
-    variantClass = 'bg-gradient-to-br from-rose-500/10 via-[#0E1322]/80 to-transparent border border-rose-500/20 shadow-rose-500/5 shadow-xl';
+    variantClass = 'bg-[#FF6B4A] text-white border-[3px] border-[#171717] shadow-[5px_5px_0px_#171717]';
   } else if (variant === 'flat') {
-    variantClass = 'bg-[#0E1322]/50 border border-white/[0.06] shadow-none';
+    variantClass = 'bg-[#EDE8DD] text-[#171717] border-[2px] border-[#171717] shadow-none';
   }
 
   const hoverClass = hoverable
-    ? 'hover:-translate-y-1 hover:border-white/[0.18] hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300'
+    ? 'hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[7px_7px_0px_#171717] cursor-pointer'
     : '';
 
   return (
     <div
-      className={`rounded-2xl backdrop-blur-xl p-6 relative overflow-hidden transition-all duration-300 ${variantClass} ${hoverClass} ${className}`}
+      className={`p-6 relative transition-all duration-150 ${variantClass} ${hoverClass} ${className}`}
       {...props}
     >
-      {/* Top Hairline Highlight */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
       {children}
     </div>
   );

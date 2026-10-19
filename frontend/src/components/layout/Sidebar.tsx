@@ -12,7 +12,6 @@ import {
   Settings,
   Radio,
   ExternalLink,
-  Bot,
   Activity,
   Headphones,
 } from 'lucide-react';
@@ -20,7 +19,7 @@ import {
 const navItems = [
   { label: 'Overview', href: '/dashboard', icon: LayoutDashboard },
   { label: 'Call History', href: '/dashboard/calls', icon: PhoneCall },
-  { label: 'Call Simulator', href: '/dashboard/simulator', icon: Terminal, badge: 'LIVE TEST' },
+  { label: 'Call Simulator', href: '/dashboard/simulator', icon: Terminal, badge: 'TEST' },
   { label: 'Personalization', href: '/dashboard/personalization', icon: UserCheck },
   { label: 'Call Rules', href: '/dashboard/rules', icon: SlidersHorizontal },
   { label: 'Integrations', href: '/dashboard/integrations', icon: Network },
@@ -31,61 +30,52 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 flex-shrink-0 bg-[#0A0D18]/80 backdrop-blur-2xl border-r border-white/[0.08] min-h-screen flex flex-col justify-between hidden md:flex sticky top-0 h-screen z-40">
+    <aside className="w-64 flex-shrink-0 bg-[#FAF7EE] border-r-[3px] border-[#171717] min-h-screen flex flex-col justify-between hidden md:flex sticky top-0 h-screen z-40">
       <div className="flex flex-col h-full overflow-y-auto">
         {/* Brand Header */}
-        <div className="p-6 border-b border-white/[0.06]">
+        <div className="p-5 border-b-[3px] border-[#171717] bg-[#FAF7EE]">
           <Link href="/dashboard" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-cyan-400 p-[1px] shadow-lg shadow-indigo-500/25 group-hover:shadow-indigo-500/40 transition-all duration-300">
-              <div className="w-full h-full bg-[#0B0F1C] rounded-[11px] flex items-center justify-center">
-                <Headphones className="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform duration-300" />
-              </div>
+            <div className="w-10 h-10 bg-[#C8FF00] text-[#171717] border-[2px] border-[#171717] font-black text-2xl flex items-center justify-center font-display shadow-[3px_3px_0px_#171717] group-hover:translate-x-[1px] group-hover:translate-y-[1px] transition-transform">
+              W
             </div>
             <div>
-              <div className="font-display font-extrabold text-lg tracking-tight text-white flex items-center gap-1.5">
-                <span>WALTER</span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 font-black">
-                  .AI
-                </span>
+              <div className="font-display font-black text-xl tracking-tight text-[#171717] leading-none">
+                WALTER<span className="text-[#FF6B4A]">.AI</span>
               </div>
-              <div className="text-[10px] uppercase font-mono tracking-wider text-slate-400 flex items-center gap-1.5 mt-0.5">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Autonomous Voice Agent
+              <div className="text-[10px] uppercase font-mono tracking-widest text-[#171717]/70 font-bold mt-1">
+                Voice Call Agent
               </div>
             </div>
           </Link>
         </div>
 
         {/* Live Audio / Agent Status Capsule */}
-        <div className="mx-4 my-4 p-3 rounded-xl bg-gradient-to-r from-indigo-500/10 via-slate-900/60 to-cyan-500/10 border border-white/[0.08] backdrop-blur-md">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-              </span>
-              <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-emerald-400">
+        <div className="m-3 p-3 bg-white border-[2px] border-[#171717] shadow-[3px_3px_0px_#171717]">
+          <div className="flex items-center justify-between mb-1.5">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-ping" />
+              <span className="text-[10px] font-mono font-black uppercase tracking-wider bg-[#C8FF00] px-1.5 py-0.5 border border-[#171717]">
                 DISPATCH ARMED
               </span>
             </div>
-            <div className="flex items-center gap-1 h-3">
+            <div className="flex items-center gap-0.5 h-3">
               <span className="wave-bar !w-[2px]" style={{ animationDuration: '0.8s' }} />
               <span className="wave-bar !w-[2px]" style={{ animationDuration: '1.2s' }} />
               <span className="wave-bar !w-[2px]" style={{ animationDuration: '0.6s' }} />
               <span className="wave-bar !w-[2px]" style={{ animationDuration: '1.0s' }} />
             </div>
           </div>
-          <p className="text-[11px] text-slate-400 font-medium leading-relaxed">
-            Twilio bidirectional pipeline ready for incoming calls.
+          <p className="text-[11px] text-[#171717]/80 font-mono font-semibold leading-tight">
+            Twilio WebSocket audio pipeline ready for calls.
           </p>
         </div>
 
         {/* Navigation Section */}
         <div className="px-3 pt-2">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 px-3 font-semibold block mb-2">
-            Control Console
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[#171717] px-3 font-extrabold block mb-2">
+            [ CONSOLE MENU ]
           </span>
-          <nav className="space-y-1">
+          <nav className="space-y-1.5">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive =
@@ -96,31 +86,20 @@ export function Sidebar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl font-display font-medium text-sm transition-all duration-200 group relative ${
+                  className={`flex items-center justify-between px-3.5 py-2.5 font-display text-sm font-bold transition-all group ${
                     isActive
-                      ? 'bg-gradient-to-r from-indigo-500/15 via-indigo-500/10 to-transparent text-white border border-indigo-500/30 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]'
-                      : 'text-slate-400 hover:text-white hover:bg-white/[0.04] border border-transparent'
+                      ? 'bg-[#C8FF00] text-[#171717] border-[2px] border-[#171717] shadow-[3px_3px_0px_#171717] -translate-x-[1px] -translate-y-[1px]'
+                      : 'text-[#171717] hover:bg-white border-[2px] border-transparent hover:border-[#171717] hover:shadow-[3px_3px_0px_#171717]'
                   }`}
                 >
-                  {isActive && (
-                    <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-5 bg-gradient-to-b from-indigo-400 to-cyan-400 rounded-r-full shadow-[0_0_8px_#6366F1]" />
-                  )}
-                  <div className="flex items-center gap-3">
-                    <Icon
-                      className={`w-4 h-4 transition-colors ${
-                        isActive
-                          ? 'text-indigo-400'
-                          : 'text-slate-400 group-hover:text-slate-200'
-                      }`}
-                    />
+                  <div className="flex items-center gap-2.5">
+                    <Icon className="w-4 h-4 flex-shrink-0" />
                     <span>{item.label}</span>
                   </div>
                   {item.badge && (
                     <span
-                      className={`text-[9px] px-2 py-0.5 rounded-full font-mono font-bold uppercase tracking-wider ${
-                        isActive
-                          ? 'bg-indigo-500/25 text-indigo-300 border border-indigo-400/30'
-                          : 'bg-white/[0.06] text-slate-400 border border-white/[0.08]'
+                      className={`text-[9px] px-1.5 py-0.2 font-mono font-black uppercase tracking-wider border-[1px] border-[#171717] ${
+                        isActive ? 'bg-[#171717] text-[#C8FF00]' : 'bg-[#FFDE59] text-[#171717]'
                       }`}
                     >
                       {item.badge}
@@ -134,23 +113,25 @@ export function Sidebar() {
       </div>
 
       {/* Footer / Telephony Quick Glance */}
-      <div className="p-4 border-t border-white/[0.06] bg-[#080B14]/60 backdrop-blur-md">
-        <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1.5">
+      <div className="p-4 border-t-[3px] border-[#171717] bg-[#EDE8DD]">
+        <div className="flex items-center justify-between text-[11px] font-mono text-[#171717] mb-1 font-bold">
           <span className="flex items-center gap-1.5">
-            <Activity className="w-3 h-3 text-cyan-400" />
+            <Activity className="w-3.5 h-3.5 text-[#171717]" />
             Audio Stream
           </span>
-          <span className="text-emerald-400 font-medium">8 kHz μ-law</span>
+          <span className="bg-[#C8FF00] px-1.5 py-0.2 border border-[#171717] text-[10px]">
+            8 kHz μ-law
+          </span>
         </div>
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-mono text-slate-300 truncate max-w-[140px]">
+        <div className="flex items-center justify-between font-mono text-xs">
+          <span className="text-[#171717]/80 truncate max-w-[130px] font-bold">
             /api/voice/stream
           </span>
           <Link
             href="/dashboard/integrations"
-            className="text-[11px] text-indigo-400 hover:text-indigo-300 flex items-center gap-1 font-mono transition-colors"
+            className="text-[#171717] font-bold hover:underline flex items-center gap-1 text-[11px]"
           >
-            Config <ExternalLink className="w-2.5 h-2.5" />
+            Config <ExternalLink className="w-3 h-3" />
           </Link>
         </div>
       </div>

@@ -15,6 +15,9 @@ import {
   SlidersHorizontal,
   Lock,
   ExternalLink,
+  PhoneForwarded,
+  CheckCircle2,
+  FileText,
 } from 'lucide-react';
 import { BrutalCard } from '@/components/ui/BrutalCard';
 import { BrutalButton } from '@/components/ui/BrutalButton';
@@ -23,6 +26,33 @@ import { StatusBadge } from '@/components/ui/StatusBadge';
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-[#F5F0E8] text-[#171717] selection:bg-[#C8FF00]">
+      {/* Top Ticker Tape */}
+      <div className="bg-[#171717] text-[#C8FF00] border-b-[2px] border-[#171717] py-1 px-4 font-mono text-[11px] font-black uppercase tracking-wider overflow-hidden select-none">
+        <div className="marquee-container">
+          <div className="marquee-content flex gap-8">
+            <span>⚡ AUTONOMOUS CALL AGENT</span>
+            <span>•</span>
+            <span>TWILIO WEBSOCKETS μ-LAW 8KHZ</span>
+            <span>•</span>
+            <span>ZERO HALLUCINATIONS (APPROVED FACTS ONLY)</span>
+            <span>•</span>
+            <span>STRUCTURED EXECUTIVE CALL SUMMARIES</span>
+            <span>•</span>
+            <span>FREE BROWSER SIMULATOR INCLUDED</span>
+            <span>•</span>
+            <span>⚡ AUTONOMOUS CALL AGENT</span>
+            <span>•</span>
+            <span>TWILIO WEBSOCKETS μ-LAW 8KHZ</span>
+            <span>•</span>
+            <span>ZERO HALLUCINATIONS (APPROVED FACTS ONLY)</span>
+            <span>•</span>
+            <span>STRUCTURED EXECUTIVE CALL SUMMARIES</span>
+            <span>•</span>
+            <span>FREE BROWSER SIMULATOR INCLUDED</span>
+          </div>
+        </div>
+      </div>
+
       {/* Top Navigation */}
       <nav className="border-b-[3px] border-[#171717] px-6 py-4 bg-[#F5F0E8] sticky top-0 z-40">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -34,7 +64,7 @@ export default function LandingPage() {
               <div className="font-display font-black text-xl tracking-tight text-[#171717]">
                 WALTER<span className="text-[#FF6B4A]">.AI</span>
               </div>
-              <div className="text-[10px] uppercase font-mono tracking-widest text-[#8a8a7a]">
+              <div className="text-[10px] uppercase font-mono tracking-widest text-[#171717]/70 font-bold">
                 Personal AI Call Agent
               </div>
             </div>
@@ -42,8 +72,8 @@ export default function LandingPage() {
 
           <div className="flex items-center gap-3 sm:gap-4">
             <Link href="/dashboard/simulator" className="hidden sm:inline-block">
-              <span className="font-mono text-xs font-bold hover:underline px-2 py-1">
-                Simulator
+              <span className="font-mono text-xs font-bold hover:underline px-2 py-1 bg-white border-[2px] border-[#171717] shadow-[2px_2px_0px_#171717]">
+                CALL SIMULATOR
               </span>
             </Link>
             <Link href="/login">
@@ -66,20 +96,20 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Hero Copy */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 border-[2px] border-[#171717] bg-[#C8FF00] px-3 py-1 font-mono text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#171717]">
+            <div className="inline-flex items-center gap-2 border-[2px] border-[#171717] bg-[#C8FF00] px-3 py-1 font-mono text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_#171717] rotate-[-1deg]">
               <Radio className="w-3.5 h-3.5 animate-pulse" />
               <span>Personal Telephone Intelligence</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl font-black font-display tracking-tight text-[#171717] leading-[1.08] uppercase">
+            <h1 className="text-4xl sm:text-6xl font-black font-display tracking-tight text-[#171717] leading-[1.05] uppercase">
               YOUR VOICE. <br />
               YOUR WALTER. <br />
-              <span className="bg-[#171717] text-[#C8FF00] px-3 inline-block mt-1">
+              <span className="bg-[#171717] text-[#C8FF00] px-3.5 py-0.5 inline-block mt-1 shadow-[4px_4px_0px_#FF6B4A]">
                 ALWAYS THERE.
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg font-medium text-[#171717]/85 max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg font-medium text-[#171717]/90 max-w-xl leading-relaxed">
               When you are in meetings, studying, or out of reach, Walter answers incoming phone calls, speaks with calm intelligence, handles routine inquiries using approved facts, and delivers structured executive summaries to your dashboard.
             </p>
 
@@ -99,13 +129,13 @@ export default function LandingPage() {
             </div>
 
             {/* Micro Badges */}
-            <div className="flex items-center gap-4 text-xs font-mono text-[#8a8a7a] pt-4">
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#22c55e]" />
+            <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#171717] pt-4 font-bold">
+              <span className="flex items-center gap-1.5 bg-white border-[2px] border-[#171717] px-2.5 py-1 shadow-[2px_2px_0px_#171717]">
+                <ShieldCheck className="w-4 h-4 text-[#10B981]" />
                 Zero Hallucinations (Approved Facts Only)
               </span>
-              <span className="flex items-center gap-1.5">
-                <Zap className="w-4 h-4 text-[#171717]" />
+              <span className="flex items-center gap-1.5 bg-white border-[2px] border-[#171717] px-2.5 py-1 shadow-[2px_2px_0px_#171717]">
+                <Zap className="w-4 h-4 text-[#FF6B4A]" />
                 Twilio Bidirectional Audio
               </span>
             </div>
@@ -113,7 +143,7 @@ export default function LandingPage() {
 
           {/* Hero Visual: Live Call Simulation Card */}
           <div className="lg:col-span-5">
-            <BrutalCard variant="dark" className="p-6 border-[3px] border-[#171717] shadow-[8px_8px_0px_#171717] space-y-5">
+            <BrutalCard variant="dark" className="p-6 border-[3px] border-[#171717] shadow-[8px_8px_0px_#171717] space-y-5 rotate-[0.5deg]">
               {/* Card Call Status */}
               <div className="flex items-center justify-between border-b-[2px] border-[#383838] pb-3">
                 <div className="flex items-center gap-2">
@@ -125,16 +155,16 @@ export default function LandingPage() {
                     INCOMING CALL: PSTN AUDIO STREAM
                   </span>
                 </div>
-                <span className="text-[10px] font-mono bg-[#171717] text-[#EDE8DD] px-2 py-0.5 border border-[#383838]">
+                <span className="text-[10px] font-mono bg-[#262626] text-[#C8FF00] px-2 py-0.5 border border-[#383838]">
                   8 kHz μ-law
                 </span>
               </div>
 
               {/* Dialogue Snippet */}
               <div className="space-y-3 font-mono text-xs">
-                <div className="p-3 bg-[#171717] border border-[#383838] space-y-1">
+                <div className="p-3 bg-[#202020] border border-[#383838] space-y-1">
                   <div className="text-[#8a8a7a] uppercase font-bold text-[10px] flex items-center gap-1">
-                    <User className="w-3 h-3" />
+                    <User className="w-3 h-3 text-[#FF6B4A]" />
                     Caller (+1-555-0182)
                   </div>
                   <p className="text-[#EDE8DD]">
@@ -142,7 +172,7 @@ export default function LandingPage() {
                   </p>
                 </div>
 
-                <div className="p-3 bg-[#2a2a2a] border border-[#C8FF00] space-y-1 shadow-[2px_2px_0px_#C8FF00]">
+                <div className="p-3 bg-[#262626] border border-[#C8FF00] space-y-1 shadow-[3px_3px_0px_#C8FF00]">
                   <div className="text-[#C8FF00] uppercase font-bold text-[10px] flex items-center gap-1">
                     <Bot className="w-3 h-3" />
                     Walter AI (Assistant)
@@ -154,16 +184,16 @@ export default function LandingPage() {
               </div>
 
               {/* Real-time Triage Tag */}
-              <div className="p-3 bg-[#171717] border border-[#383838] flex items-center justify-between text-xs font-mono">
+              <div className="p-3 bg-[#202020] border border-[#383838] flex items-center justify-between text-xs font-mono">
                 <span className="text-[#8a8a7a]">Intent Detected:</span>
-                <span className="bg-[#C8FF00] text-[#171717] font-bold px-2 py-0.5 uppercase">
+                <span className="bg-[#C8FF00] text-[#171717] font-bold px-2 py-0.5 uppercase border border-[#171717]">
                   Scheduling (Normal Priority)
                 </span>
               </div>
 
               {/* Soundwave Simulation */}
-              <div className="flex items-center justify-center gap-1 h-8 pt-2">
-                {[40, 70, 30, 90, 60, 20, 80, 50, 95, 45, 65, 35].map((height, i) => (
+              <div className="flex items-center justify-center gap-1.5 h-8 pt-2">
+                {[40, 70, 30, 90, 60, 20, 80, 50, 95, 45, 65, 35, 80, 55].map((height, i) => (
                   <span
                     key={i}
                     style={{ height: `${height}%` }}
@@ -178,19 +208,26 @@ export default function LandingPage() {
 
       {/* Core Architecture Features */}
       <section className="px-6 py-20 max-w-7xl mx-auto space-y-12">
-        <div className="border-b-[3px] border-[#171717] pb-4">
-          <span className="section-header text-xs text-[#171717]">SYSTEM CAPABILITIES</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight font-display mt-1">
-            Engineered for Real-World Telephone Reliability
-          </h2>
+        <div className="border-b-[3px] border-[#171717] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span className="font-mono text-xs font-extrabold uppercase tracking-widest bg-[#FFDE59] px-2 py-0.5 border-[2px] border-[#171717] shadow-[2px_2px_0px_#171717] inline-block mb-2">
+              SYSTEM CAPABILITIES
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight font-display mt-1">
+              Engineered for Real-World Telephone Reliability
+            </h2>
+          </div>
+          <span className="font-mono text-xs font-bold text-[#171717]/70">
+            PSTN &bull; WEBSOCKETS &bull; LLM PIPELINE
+          </span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <BrutalCard className="p-6 space-y-4">
+          <BrutalCard hoverable className="p-6 space-y-4">
             <div className="w-12 h-12 bg-[#C8FF00] border-[2px] border-[#171717] flex items-center justify-center shadow-[3px_3px_0px_#171717]">
               <PhoneCall className="w-6 h-6 text-[#171717]" />
             </div>
-            <h3 className="font-display font-bold text-xl uppercase tracking-tight">
+            <h3 className="font-display font-extrabold text-xl uppercase tracking-tight">
               Twilio Media Streams
             </h3>
             <p className="text-xs text-[#171717]/80 font-medium leading-relaxed">
@@ -198,11 +235,11 @@ export default function LandingPage() {
             </p>
           </BrutalCard>
 
-          <BrutalCard className="p-6 space-y-4">
+          <BrutalCard hoverable className="p-6 space-y-4">
             <div className="w-12 h-12 bg-[#FF6B4A] border-[2px] border-[#171717] flex items-center justify-center text-white shadow-[3px_3px_0px_#171717]">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h3 className="font-display font-bold text-xl uppercase tracking-tight">
+            <h3 className="font-display font-extrabold text-xl uppercase tracking-tight">
               Owner Boundary Security
             </h3>
             <p className="text-xs text-[#171717]/80 font-medium leading-relaxed">
@@ -210,11 +247,11 @@ export default function LandingPage() {
             </p>
           </BrutalCard>
 
-          <BrutalCard className="p-6 space-y-4">
-            <div className="w-12 h-12 bg-white border-[2px] border-[#171717] flex items-center justify-center shadow-[3px_3px_0px_#171717]">
+          <BrutalCard hoverable className="p-6 space-y-4">
+            <div className="w-12 h-12 bg-[#00F0FF] border-[2px] border-[#171717] flex items-center justify-center text-[#171717] shadow-[3px_3px_0px_#171717]">
               <Terminal className="w-6 h-6 text-[#171717]" />
             </div>
-            <h3 className="font-display font-bold text-xl uppercase tracking-tight">
+            <h3 className="font-display font-extrabold text-xl uppercase tracking-tight">
               Zero-Cost Simulator
             </h3>
             <p className="text-xs text-[#171717]/80 font-medium leading-relaxed">
@@ -228,10 +265,10 @@ export default function LandingPage() {
       <section className="px-6 py-16 bg-[#EDE8DD] border-y-[3px] border-[#171717]">
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="text-center space-y-2">
-            <span className="font-mono text-xs font-bold uppercase bg-[#171717] text-[#C8FF00] px-2.5 py-1 border border-[#171717]">
+            <span className="font-mono text-xs font-black uppercase bg-[#171717] text-[#C8FF00] px-3 py-1 border-[2px] border-[#171717] shadow-[2px_2px_0px_#171717] inline-block">
               AUTOMATED POST-CALL SYNTHESIS
             </span>
-            <h2 className="text-3xl font-extrabold uppercase font-display tracking-tight">
+            <h2 className="text-3xl font-black uppercase font-display tracking-tight">
               Structured Summaries, Not Lengthy Recordings
             </h2>
             <p className="text-xs font-medium text-[#171717]/80 max-w-xl mx-auto">
@@ -252,17 +289,17 @@ export default function LandingPage() {
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 font-mono text-xs">
-              <div className="p-2.5 bg-[#EDE8DD] border border-[#171717]">
-                <span className="text-[10px] text-[#8a8a7a] block">CALLER</span>
-                <span className="font-bold">Sarah Connor</span>
+              <div className="p-2.5 bg-[#EDE8DD] border-[2px] border-[#171717] shadow-[2px_2px_0px_#171717]">
+                <span className="text-[10px] text-[#171717]/70 font-bold block">CALLER</span>
+                <span className="font-extrabold">Sarah Connor</span>
               </div>
-              <div className="p-2.5 bg-[#EDE8DD] border border-[#171717]">
-                <span className="text-[10px] text-[#8a8a7a] block">CATEGORY</span>
-                <span className="font-bold">Scheduling</span>
+              <div className="p-2.5 bg-[#EDE8DD] border-[2px] border-[#171717] shadow-[2px_2px_0px_#171717]">
+                <span className="text-[10px] text-[#171717]/70 font-bold block">CATEGORY</span>
+                <span className="font-extrabold">Scheduling</span>
               </div>
-              <div className="p-2.5 bg-[#EDE8DD] border border-[#171717]">
-                <span className="text-[10px] text-[#8a8a7a] block">ACTION REQUIRED</span>
-                <span className="font-bold text-[#FF6B4A]">Confirm Time</span>
+              <div className="p-2.5 bg-[#EDE8DD] border-[2px] border-[#171717] shadow-[2px_2px_0px_#171717]">
+                <span className="text-[10px] text-[#171717]/70 font-bold block">ACTION REQUIRED</span>
+                <span className="font-extrabold text-[#FF6B4A]">Confirm Time</span>
               </div>
             </div>
           </BrutalCard>
@@ -270,13 +307,13 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t-[3px] border-[#171717] bg-[#202020] text-[#F5F0E8] px-6 py-12">
+      <footer className="border-t-[3px] border-[#171717] bg-[#171717] text-[#F5F0E8] px-6 py-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-[#C8FF00] text-[#171717] font-black text-xl flex items-center justify-center font-display border border-[#171717]">
               W
             </div>
-            <span className="font-display font-bold text-lg text-white">
+            <span className="font-display font-black text-lg text-white">
               WALTER AI ASSISTANT
             </span>
           </div>
@@ -286,7 +323,7 @@ export default function LandingPage() {
           </p>
 
           <div className="flex items-center gap-4 text-xs font-mono">
-            <Link href="/dashboard" className="text-[#C8FF00] hover:underline">
+            <Link href="/dashboard" className="bg-[#C8FF00] text-[#171717] font-bold px-3 py-1.5 border-[2px] border-[#171717] shadow-[3px_3px_0px_#FFFFFF] hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all">
               Enter Console &rarr;
             </Link>
           </div>
